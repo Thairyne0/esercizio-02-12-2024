@@ -19,7 +19,6 @@
 //       });
 //   };
 
-import { comment } from "postcss";
 import { Component } from "react";
 
 //   componentDidMount() {
@@ -64,7 +63,7 @@ class MyCommentsArea extends Component {
         return response.json(); // Converte la risposta in JSON
       })
       .then((books) => {
-        this.setState((this.comments = books));
+        this.setState({ comments: books });
         console.log(books);
       })
       .catch((error) => {
@@ -85,8 +84,20 @@ class MyCommentsArea extends Component {
   };
 
   render() {
-    console.log(this.comments);
-    return <div></div>;
+    return (
+      <div>
+        {this.state.comments.map((data) => {
+          return (
+            <p
+              key={data._id}
+              className=" m-3 bg-gray-400 rounded-lg font-bold p-2"
+            >
+              {data.author}:<strong className=" block">{data.comment}</strong>
+            </p>
+          );
+        })}
+      </div>
+    );
   }
 }
 

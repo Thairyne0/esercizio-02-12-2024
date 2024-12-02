@@ -13,7 +13,6 @@ import MyCommentsArea from "../components/MyCommentsArea";
 class Home extends Component {
   state = {
     asinBook: "",
-    obj: [],
   };
 
   //   fetchBooks = () => {
@@ -43,7 +42,7 @@ class Home extends Component {
 
   changeBookListState = (newAsin) => {
     this.setState({
-      asin: newAsin,
+      asinBook: newAsin,
     });
   };
 
@@ -52,11 +51,13 @@ class Home extends Component {
       <div>
         <MyNavBar></MyNavBar>
         <div className="grid grid-cols-12">
-          <div className="col-span-6 bg-gray-800 rounded-lg flex flex-col items-center m-5 gap-4 p-3 pt-5">
-            <div className="grid grid-cols-2 gap-6">
+          <div className="col-span-12 sm:col-span-6 bg-gray-800 rounded-lg flex flex-col items-center m-5 gap-4 p-3 pt-5">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
               {product.slice(0, 10).map((book) => {
                 return (
                   <MySingleBook
+                    onClick={this.changeBookListState}
+                    value={book.asin}
                     key={book.asin}
                     img={book.img}
                     title={book.title}
@@ -65,8 +66,8 @@ class Home extends Component {
               })}
             </div>
           </div>
-          <div className="col-span-6 bg-gray-600 rounded-lg m-5">
-            <MyCommentsArea asin={"0316438960"}></MyCommentsArea>
+          <div className="col-span-12 sm:col-span-6 bg-gray-600 rounded-lg m-5">
+            <MyCommentsArea asin={this.state.asinBook}></MyCommentsArea>
           </div>
         </div>
       </div>
