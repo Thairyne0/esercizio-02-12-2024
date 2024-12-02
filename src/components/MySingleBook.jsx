@@ -3,11 +3,13 @@ import { Component } from "react";
 class MySingleBook extends Component {
   render() {
     return (
-      <div className="flex flex-col justify-center items-center bg-gray-500 rounded-lg w-60 h-96 shadow-md p-4">
-        <img src={this.props.img} alt="book" className="" />
+      <a href="">
+        <div className="flex flex-col justify-between items-center rounded-lg w-60 h-96 p-7 border border-white text-white gap-3">
+          <img src={this.props.img} alt="book" className="" />
 
-        <h2>{this.props.title}</h2>
-      </div>
+          <h2>{this.props.title}</h2>
+        </div>
+      </a>
     );
   }
 }
