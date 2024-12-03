@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { useState } from "react";
 import MyNavBar from "../components/MyNavBar";
 import product from "../data/fantasy.json";
 import MySingleBook from "../components/MySingleBook";
@@ -10,9 +10,11 @@ import MyCommentsArea from "../components/MyCommentsArea";
 //     }
 //     })
 
-class Home extends Component {
-  state = {
-    asinBook: "",
+const Home = () => {
+  const [asinBook, setAsinBook] = useState("");
+
+  const changeBookListState = (newAsin) => {
+    setAsinBook(newAsin);
   };
 
   //   fetchBooks = () => {
@@ -40,39 +42,31 @@ class Home extends Component {
   //     this.fetchBooks();
   //   }
 
-  changeBookListState = (newAsin) => {
-    this.setState({
-      asinBook: newAsin,
-    });
-  };
-
-  render() {
-    return (
-      <div>
-        <MyNavBar></MyNavBar>
-        <div className="grid grid-cols-12">
-          <div className="col-span-12 sm:col-span-6 bg-gray-800 rounded-lg flex flex-col items-center m-5 gap-4 p-3 pt-5">
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-              {product.slice(0, 10).map((book) => {
-                return (
-                  <MySingleBook
-                    onClick={this.changeBookListState}
-                    value={book.asin}
-                    key={book.asin}
-                    img={book.img}
-                    title={book.title}
-                  ></MySingleBook>
-                );
-              })}
-            </div>
-          </div>
-          <div className="col-span-12 sm:col-span-6 bg-gray-600 rounded-lg m-5">
-            <MyCommentsArea asin={this.state.asinBook}></MyCommentsArea>
+  return (
+    <div>
+      <MyNavBar></MyNavBar>
+      <div className="grid grid-cols-12">
+        <div className="col-span-12 sm:col-span-6 bg-gray-800 rounded-lg flex flex-col items-center m-5 gap-4 p-3 pt-5">
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+            {product.slice(0, 10).map((book) => {
+              return (
+                <MySingleBook
+                  onClick={changeBookListState}
+                  value={book.asin}
+                  key={book.asin}
+                  img={book.img}
+                  title={book.title}
+                ></MySingleBook>
+              );
+            })}
           </div>
         </div>
+        <div className="col-span-12 sm:col-span-6 bg-gray-600 rounded-lg m-5">
+          <MyCommentsArea asin={asinBook}></MyCommentsArea>
+        </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Home;
