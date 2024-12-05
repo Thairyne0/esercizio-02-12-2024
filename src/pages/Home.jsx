@@ -44,7 +44,6 @@ const Home = () => {
 
   return (
     <div>
-      <MyNavBar></MyNavBar>
       <div className="grid grid-cols-12">
         <div className="col-span-12 sm:col-span-6 bg-gray-800 rounded-lg flex flex-col items-center m-5 gap-4 p-3 pt-5">
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
@@ -56,6 +55,7 @@ const Home = () => {
                   key={book.asin}
                   img={book.img}
                   title={book.title}
+                  asin={book.asin}
                 ></MySingleBook>
               );
             })}

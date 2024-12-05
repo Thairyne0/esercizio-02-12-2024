@@ -1,6 +1,10 @@
-const MySingleBook = ({ img, title, value, onClick }) => {
+import { useNavigate } from "react-router-dom";
+
+const MySingleBook = ({ img, title, value, onClick, asin }) => {
+  const navigate = useNavigate();
   const handleClick = () => {
     onClick(value);
+    navigate(`/book/${asin}`);
   };
 
   return (
